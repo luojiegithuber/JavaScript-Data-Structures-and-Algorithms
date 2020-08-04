@@ -19,7 +19,7 @@ let Root = null;
 
 
 //测试数据集     @@期望第一个节点就是根节点,其余无所谓
-let testArr = [
+/*let testArr = [
 	{ id:1, data:1, parent:null},  //无父母就是根节点
 	{ id:2, data:2, parent:1 },
 	{ id:3, data:3, parent:1 },
@@ -27,6 +27,22 @@ let testArr = [
 	{ id:5, data:5, parent:2 },
 	{ id:6, data:6, parent:3 },
 	{ id:7, data:7, parent:6 },
+];*/
+
+let testArr = [
+	{ id:1, data:1, parent:null},  //无父母就是根节点
+	{ id:2, data:2, parent:1 },
+	{ id:3, data:3, parent:1 },
+	{ id:4, data:4, parent:2 },
+	{ id:5, data:5, parent:2 },
+	{ id:6, data:6, parent:3 },
+	{ id:7, data:7, parent:3 },
+];
+
+
+
+let newDataArr = [
+	{ id:2, data:2, parent:3}
 ];
 
 //为了查找的性能，建立 id 和 node 索引，方便根据id查找node
@@ -127,8 +143,26 @@ function ArrToTree(testArr){
 }
 
 
+//二叉树翻转
+function reverseTree(node){
+	let temp = node.leftChild;
+	node.leftChild = node.rightChild;
+	node.rightChild = temp;
+
+	if(node.leftChild){
+		reverseTree(node.leftChild);
+	}
+
+	if(node.rightChild){
+		reverseTree(node.rightChild);
+	}
+}
+
 
 //主函数
 function main(){
 	Root = ArrToTree(testArr);
+	console.log(Root);
+	reverseTree(Root);
+	console.log(Root);
 }

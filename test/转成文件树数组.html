@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>treeData的转换</title>
+
+</head>
+<body>
+    
+</body>
+
+<script type="text/javascript">
+const treeData = [
+  {
+    title: '0-0',
+    key: '0-0',
+    children: [
+      {
+        title: '0-0-0',
+        key: '0-0-0',
+        children: [
+          { title: '0-0-0-0', key: '0-0-0-0' },
+          { title: '0-0-0-1', key: '0-0-0-1' },
+          { title: '0-0-0-2', key: '0-0-0-2' },
+        ],
+      },
+      {
+        title: '0-0-1',
+        key: '0-0-1',
+        children: [
+          { title: '0-0-1-0', key: '0-0-1-0' },
+          { title: '0-0-1-1', key: '0-0-1-1' },
+          { title: '0-0-1-2', key: '0-0-1-2' },
+        ],
+      },
+      {
+        title: '0-0-2',
+        key: '0-0-2',
+      },
+    ],
+  },
+  {
+    title: '0-1',
+    key: '0-1',
+    children: [
+      { title: '0-1-0-0', key: '0-1-0-0' },
+      { title: '0-1-0-1', key: '0-1-0-1' },
+      { title: '0-1-0-2', key: '0-1-0-2' },
+    ],
+  },
+  {
+    title: '0-2',
+    key: '0-2',
+  },
+];
+
+
+let data = {
+        "name": "..",
+        "childs": [
+            {
+                "name": "assets",
+                "dir": true
+            },
+            {
+                "name": "variables",
+                "childs": [
+                    {
+                        "name": "variables.data-00000-of-00001",
+                        "dir": false
+                    },
+                    {
+                        "name": "variables.index",
+                        "dir": true
+                    }
+                ],
+                "dir": true
+            },
+            {
+                "name": "saved_model.pb",
+                "dir": false
+            }
+        ],
+        "dir": true
+    };
+
+function toTreeData(data){
+	let objArr = [];
+	objArr.push(data);
+
+	function toTreeNodeArr(objArr){
+
+		return objArr.map(obj => {
+
+			let treeNode = {};
+
+			treeNode.title = obj.name;
+			treeNode.key = obj.name;
+
+			if(!obj.dir){
+				treeNode.isLeaf = true;
+			}else{
+
+				if(obj.childs){
+					treeNode.children = toTreeNodeArr(obj.childs);
+				}
+				
+			}
+
+			return treeNode;
+
+		})
+
+	}
+
+	
+	console.log(toTreeNodeArr(objArr))
+
+}
+
+toTreeData(data)
+
+
+</script>
+</html>
