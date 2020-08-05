@@ -72,6 +72,19 @@ function printTree(){
 
 let count = 0;
 let maxDepth = 0;
+
+
+var maxDepth = function(root) {
+    if (!root) return 0;
+    else {
+        let leftDepth = maxDepth(root.left),
+            rightDepth = maxDepth(root.right);
+        let childDepth = leftDepth > rightDepth ? leftDepth : rightDepth;
+        return childDepth + 1;
+    }
+};
+
+
 function countDepth(Root){
     
     //判空
@@ -156,6 +169,34 @@ function reverseTree(node){
 	if(node.rightChild){
 		reverseTree(node.rightChild);
 	}
+}
+
+
+//从上到下打印二叉树
+function printTreeBFS(node){
+	let depth = 0;
+	let arr = [];
+
+	function countDepth(Root){
+	    
+	    //判空
+	    if(!Root){return 0;}
+
+	    //访问得到就能++count
+		depth++;
+		arr[depth]=Root.data;
+
+		if(count>maxDepth){maxDepth = count;}
+
+		countDepth(Root.leftChild);
+		countDepth(Root.rightChild);
+
+		count--;//递归出来要减去1
+		return maxDepth;
+	}
+
+
+
 }
 
 

@@ -38,14 +38,13 @@ function showList(list){
 //翻转链表
 function reverseList(head) {
    
-	if(!head)return null
-	if(!head.next)return head
+	if(!head)return null        //空
+	if(!head.next)return head   //只有一个头
    
-   
-	 let node=reverseList(head.next)
-	 head.next.next=head
-	 head.next=null 
-	 return node 
+	let node=reverseList(head.next)
+	head.next.next=head
+	head.next=null 
+	return node //node永远指向当初最后那个节点
     
 };
 
