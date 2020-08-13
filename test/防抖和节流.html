@@ -14,7 +14,8 @@
 
 <script type="text/javascript">
 
-function throttle(func, delay) {            
+//节流
+function throttle(fn, delay) {            
 　　var prev = Date.now();            
 　　return function() {                
 　　　　var context = this;                
@@ -28,11 +29,11 @@ function throttle(func, delay) {
 } 
 
 // 防抖
-function debounce(fn, wait) {    
+function debounce(fn, delay) {    
     var timeout = null;    
     return function() {        
         clearTimeout(timeout);        
-        timeout = setTimeout(fn, wait);    
+        timeout = setTimeout(fn, delay);    
     }
 }
 // 处理函数
@@ -42,6 +43,8 @@ function handle() {    
 // 滚动事件
 //window.addEventListener('scroll', debounce(handle, 1000));
 window.addEventListener('scroll', throttle(handle, 1000));
+
+
 
 </script>
 </html>

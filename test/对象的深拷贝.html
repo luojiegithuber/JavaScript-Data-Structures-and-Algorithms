@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象的深拷贝和内容对比</title>
+
+</head>
+<body>
+    
+</body>
+
+<script type="text/javascript">
+
+//深拷贝后，内容一样但是地址不一样
+let obj1 ={
+    "code": 0,
+    "message": "查询成功",
+    "data": {
+        "confs": [
+            {
+                "jobConfId": 2,
+                "jobConfName": "服务配置",
+                "jobConfKey": "node-config",
+                "id": 6,
+                "configType": 3,
+                "value": "xxxx",
+                "options": null
+            },
+            {
+                "jobConfId": 1,
+                "jobConfName": "资源配置",
+                "jobConfKey": "node-resource",
+                "id": 5,
+                "configType": 1,
+                "value": "1",
+                "options": []
+            },
+            {
+                "jobConfId": 3,
+                "jobConfName": "input测试",
+                "jobConfKey": "node-input",
+                "id": 7,
+                "configType": 4,
+                "value": "xxxxxxxbbbbbb",
+                "options": null
+            },
+            {
+                "jobConfId": 4,
+                "jobConfName": "map测试",
+                "jobConfKey": "node-map",
+                "id": 8,
+                "configType": 2,
+                "value": [
+                    {
+                        "key": "test",
+                        "value": "aaa",
+                        "desc": "测试配置"
+                    }
+                ],
+                "options": null
+            }
+        ],
+        "userJobId": 3
+    }
+}
+
+
+var deepClone = function (target) { 
+    // 定义一个变量
+    let result;
+    // 如果当前需要深拷贝的是一个对象的话
+    if (typeof target === 'object') {
+    // 如果是一个数组的话
+        if (Array.isArray(target)) {
+            result = []; // 将result赋值为一个数组，并且执行遍历
+            for (let i in target) {
+                // 递归克隆数组中的每一项
+                result.push(deepClone(target[i]))
+            }
+         // 判断如果当前的值是null的话；直接赋值为null
+        } else if(target===null) {
+            result = null;
+         // 判断如果当前的值是一个RegExp对象的话，直接赋值    
+        } else if(target.constructor===RegExp){
+            result = target;
+        }else {
+         // 否则是普通对象，直接for in循环，递归赋值对象的所有值
+            result = {};
+            for (let i in target) {
+                result[i] = deepClone(target[i]);
+            }
+        }
+     // 如果不是对象的话，就是基本数据类型，那么直接赋值
+    } else {
+        result = target;
+    }
+     // 返回最终结果
+    return result;
+};
+
+let obj2 = deepClone(obj1);
+
+console.log(obj2)
+
+
+
+</script>
+</html>
