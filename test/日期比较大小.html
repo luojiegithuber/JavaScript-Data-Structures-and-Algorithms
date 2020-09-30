@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>日期比较大小</title>
+
+</head>
+<body>
+    
+</body>
+
+<script type="text/javascript">
+
+let date1 = "2020-08-22 14:03:06";
+let date2 = "2020-08-29 06:03:30";
+
+console.log(new Date(date1))
+console.log(new Date(date2))
+
+function isSwitchChange(startTime,endTime){
+	let now = new Date();
+	startTime = new Date(startTime);
+	endTime = new Date(endTime);
+
+	return (now>=startTime&&now<=endTime)?true:false
+}
+
+console.log(isSwitchChange(date1,date2))
+
+</script>
+</html>

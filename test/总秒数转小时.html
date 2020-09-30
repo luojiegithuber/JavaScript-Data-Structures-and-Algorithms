@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>秒转小时</title>
+
+</head>
+<body>
+    
+</body>
+
+<script type="text/javascript">
+
+
+function formatSeconds(value) {
+
+    var time = parseInt(value);// 秒
+    var second = 0; // 秒
+    var minute = 0; // 分
+    var hour = 0;   // 时
+
+    hour = Math.floor(time/3600);
+    time = time%3600;
+
+    minute = Math.floor(time/60);
+    second = time%60;
+
+    return hour+'小时'+minute+'分钟'+second+'秒';
+}
+
+
+
+console.log(formatSeconds(60))
+console.log(formatSeconds(78156))
+console.log(formatSeconds(8))
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测评</title>
+
+</head>
+<body>
+    
+</body>
+
+<script type="text/javascript">
+
+var name = 'luojie'
+
+var opt = {
+    name:"Amy",
+    name2: this.name, 
+    say:function(){
+        return this.name;
+    },
+    say2:function(){
+        setTimeout(function(){
+            console.log(this.name); //计数器中的this陷阱
+        })
+    },
+    say3:function(){
+        setTimeout(() => {
+            console.log(this.name);  //箭头函数的this在定义的时候已经被确定
+        })
+    }
+}
+
+console.log(opt.name2); //undefined
+console.log(opt.say()); //Amy
+opt.say2(); //undefined
+opt.say3(); //Amy
+
+</script>
+</html>
