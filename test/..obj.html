@@ -5,21 +5,29 @@
     <title>...obj</title>
 
 </head>
+
 <body>
     
 </body>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
 <script type="text/javascript">
-
-let obj = {
-    "jobNumber": "1204",
-    "token": "token_ly",
-    "userJobId": 82,
-    "branch": "1.1",
-    "imageUrl": "",
-    "command": ""
+function calcMonthBeforeAfter(value) {
+  const newDate = moment();
+  if(value >= 0){
+  	newDate.add(value, 'months').endOf('month');
+  }else{
+  	newDate.subtract(-value, 'months').startOf('month');	
+  }
+  console.log(newDate)
+  return newDate._d;
 }
 
-console.log(obj)
+console.log(calcMonthBeforeAfter(0).toLocaleDateString())
+
+const s = 'sss'
+console.log(s.split(','))
+
+const a = true;
+console.log(a.toString())
 </script>
 </html>
